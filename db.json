@@ -1,0 +1,69 @@
+{
+  "notes": [
+    {
+      "id": 1,
+      "firstname": "Toni",
+      "lastname": "Nissinen",
+      "phone": "0401234567",
+      "role": "student",
+      "message": "This task will be interesting"
+    },
+    {
+      "id": 2,
+      "firstname": "Kirsi",
+      "lastname": "Pirskanen",
+      "phone": "0401234567",
+      "role": "other",
+      "message": "I dont understand how this is working"
+    },
+    {
+      "id": 3,
+      "firstname": "Ada",
+      "lastname": "Lovelace",
+      "phone": "0407654321",
+      "role": "other",
+      "message": "You will get this. Its easy."
+    },
+    {
+      "id": 4,
+      "firstname": "Ada",
+      "lastname": "Lovelace",
+      "phone": "0407654321",
+      "role": "other",
+      "message": "Nice it works! Way to go!"
+    },
+    {
+      "id": 5,
+      "firstname": "Margit",
+      "lastname": "Lovelace",
+      "phone": "0407654321",
+      "role": "other",
+      "message": "Nice it works! Way to go!"
+    },
+    {
+      "firstname": "Test",
+      "lastname": "Tester",
+      "phone": "0401234567",
+      "role": "other",
+      "message": "This is working!",
+      "id": 6
+    },
+    {
+      "firstname": "Toni",
+      "lastname": "Nissinen",
+      "phone": "0401234567",
+      "role": "student",
+      "message": "What happens to id now?!?",
+      "id": 7
+    },
+    {
+      "firstname": "toni",
+      "lastname": "nissinen",
+      "phone": "0401234567",
+      "role": "other",
+      "message": "Testing radio button",
+      "contact": "no",
+      "id": 8
+    }
+  ]
+}
