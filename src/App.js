@@ -6,6 +6,7 @@ import Form from "./Form";
 import DisplayNote from "./DisplayNote";
 import Popup from "./Popup";
 import Listing from "./Listing";
+import EditNote from "./EditNote";
 
 class App extends Component {
   state = {
@@ -18,8 +19,10 @@ class App extends Component {
       contact: "",
     },
     showPopup: false,
+    showEditPopup: false,
     isLoading: false,
     data: [],
+    editData: {},
   };
 
   componentDidMount() {
@@ -30,6 +33,18 @@ class App extends Component {
       .catch((err) => console.log(err));
   }
 
+  inputUpdateHandler = (e) => {
+    this.setState({
+      editData: { ...this.state.editData, [e.target.name]: e.target.value },
+    });
+  };
+
+  updateHandler = (id) => {
+    axios.put(`http://localhost:3010/notes/${id}`, this.state.editData);
+    this.setState({ showEditPopup: false });
+    this.closeHandler();
+  };
+
   postHandler = () => {
     axios
       .post("http://localhost:3010/notes/", this.state.inputData)
@@ -38,13 +53,30 @@ class App extends Component {
     this.closeHandler();
   };
 
+  deleteHandler = (id) => {
+    axios.delete(`http://localhost:3010/notes/${id}`).then((res) => {
+      const notes = this.state.data.filter((item) => item.id !== id);
+      this.setState({ data: notes });
+    });
+  };
+
+  editHandler = (id) => {
+    this.setState({ showEditPopup: true });
+    axios
+      .get(`http://localhost:3010/notes/${id}`)
+      .then((response) =>
+        this.setState({ editData: response.data, showEditPopup: true })
+      );
+  };
+
   inputHandler = (e) => {
     this.setState({
       inputData: { ...this.state.inputData, [e.target.name]: e.target.value },
     });
   };
 
-  // showPopupHandler = (e) => {
+  //  ALTERNATIVE WAY FOR THE POPUPHANDLER
+  //  showPopupHandler = (e) => {
   //   if (e.target.name === "send" || e.target.name === "close") {
   //     this.setState({
   //       showPopup: !this.state.showPopup,
@@ -75,10 +107,22 @@ class App extends Component {
               post={this.postHandler}
             />
           )}
+          {this.state.showEditPopup && (
+            <EditNote
+              {...this.state.editData}
+              onChange={this.inputUpdateHandler}
+              submit={() => this.updateHandler(this.state.editData.id)}
+            />
+          )}
         </div>
         <ol>
           {this.state.data.map((item) => (
-            <Listing {...item} key={item.id} />
+            <Listing
+              {...item}
+              key={item.id}
+              delete={() => this.deleteHandler(item.id)}
+              edit={() => this.editHandler(item.id)}
+            />
           ))}
         </ol>
       </div>

@@ -14,6 +14,7 @@ function Form(props) {
           className={classes.input}
           id="fname"
           required
+          defaultValue={props.firstname}
         />
         <label htmlFor="lname" className={classes.alignRight}>
           Lastname:
@@ -24,11 +25,19 @@ function Form(props) {
           className={classes.input}
           id="lname"
           required
+          defaultValue={props.lastname}
         />
         <label htmlFor="phone" className={classes.alignRight}>
           Phone#:
         </label>
-        <input type="tel" name="phone" className={classes.input} id="phone" required />
+        <input
+          type="tel"
+          name="phone"
+          className={classes.input}
+          id="phone"
+          required
+          defaultValue={props.phone}
+        />
         <label htmlFor="role" className={classes.alignRight}>
           Role:
         </label>
@@ -38,6 +47,7 @@ function Form(props) {
           className={classes.input}
           onChange={props.onChange}
           required
+          defaultValue={props.role}
         >
           <option value="" invalid="true" hidden>
             Choose a role
@@ -55,6 +65,7 @@ function Form(props) {
           className={classes.input}
           id="msg"
           required
+          defaultValue={props.message}
         ></textarea>
         <fieldset>
           <legend className={classes.legend}>
@@ -66,6 +77,7 @@ function Form(props) {
             name="contact"
             className={classes.radio}
             value="yes"
+            defaultValue={props.contact}
           />
           <label htmlFor="yes">Yes</label>
           <input
@@ -74,6 +86,7 @@ function Form(props) {
             name="contact"
             className={classes.radio}
             value="no"
+            defaultValue={props.contact}
           />
           <label htmlFor="no">No</label>
         </fieldset>
