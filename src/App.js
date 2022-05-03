@@ -39,7 +39,8 @@ class App extends Component {
     });
   };
 
-  updateHandler = (id) => {
+  updateHandler = (e, id) => {
+    e.preventDefault();
     axios.put(`http://localhost:3010/notes/${id}`, this.state.editData);
     this.setState({ showEditPopup: false });
     this.closeHandler();
