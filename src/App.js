@@ -22,7 +22,7 @@ class App extends Component {
     showEditPopup: false,
     isLoading: false,
     data: [],
-    editData: {},
+    currentNote: {},
   };
 
   componentDidMount() {
@@ -30,18 +30,17 @@ class App extends Component {
     axios
       .get("http://localhost:3010/notes/")
       .then((response) => this.setState({ data: response.data, isLoading: false }))
-      .catch((err) => console.log(err));
+      .catch((err) => prompt("Something went wrong" + err));
   }
 
   inputUpdateHandler = (e) => {
     this.setState({
-      editData: { ...this.state.editData, [e.target.name]: e.target.value },
+      currentNote: { ...this.state.currentNote, [e.target.name]: e.target.value },
     });
   };
 
-  updateHandler = (e, id) => {
-    e.preventDefault();
-    axios.put(`http://localhost:3010/notes/${id}`, this.state.editData);
+  updateHandler = (id) => {
+    axios.put(`http://localhost:3010/notes/${id}`, this.state.currentNote);
     this.setState({ showEditPopup: false });
     this.closeHandler();
   };
@@ -62,11 +61,10 @@ class App extends Component {
   };
 
   editHandler = (id) => {
-    this.setState({ showEditPopup: true });
     axios
       .get(`http://localhost:3010/notes/${id}`)
       .then((response) =>
-        this.setState({ editData: response.data, showEditPopup: true })
+        this.setState({ currentNote: response.data, showEditPopup: true })
       );
   };
 
@@ -110,9 +108,9 @@ class App extends Component {
           )}
           {this.state.showEditPopup && (
             <EditNote
-              {...this.state.editData}
+              {...this.state.currentNote}
               onChange={this.inputUpdateHandler}
-              submit={() => this.updateHandler(this.state.editData.id)}
+              submit={() => this.updateHandler(this.state.currentNote.id)}
             />
           )}
         </div>

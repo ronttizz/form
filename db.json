@@ -1,12 +1,12 @@
 {
   "notes": [
     {
-      "firstname": "Timo",
+      "firstname": "Toni",
       "lastname": "Nissinen",
       "phone": "0401234567",
       "role": "student",
       "message": "This task is really nice and I like it alot.",
-      "contact": "yes",
+      "contact": "no",
       "id": 1
     },
     {
@@ -26,15 +26,6 @@
       "message": "testing things",
       "contact": "no",
       "id": 3
-    },
-    {
-      "firstname": "qwer",
-      "lastname": "qwer",
-      "phone": "1234",
-      "role": "other",
-      "message": "qwerasdf",
-      "contact": "no",
-      "id": 4
     }
   ]
 }

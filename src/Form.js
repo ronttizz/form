@@ -71,24 +71,47 @@ function Form(props) {
           <legend className={classes.legend}>
             Do you want supervisor to contact you?
           </legend>
-          <input
-            type="radio"
-            id="yes"
-            name="contact"
-            className={classes.radio}
-            value="yes"
-            defaultValue={props.contact}
-          />
-          <label htmlFor="yes">Yes</label>
-          <input
-            type="radio"
-            id="no"
-            name="contact"
-            className={classes.radio}
-            value="no"
-            defaultValue={props.contact}
-          />
-          <label htmlFor="no">No</label>
+          {props.contact === "yes" ? (
+            <>
+              <input
+                type="radio"
+                id="yes"
+                name="contact"
+                className={classes.radio}
+                value="yes"
+                defaultChecked
+              />
+              <label htmlFor="yes">Yes</label>
+              <input
+                type="radio"
+                id="no"
+                name="contact"
+                className={classes.radio}
+                value="no"
+              />
+              <label htmlFor="no">No</label>
+            </>
+          ) : (
+            <>
+              <input
+                type="radio"
+                id="yes"
+                name="contact"
+                className={classes.radio}
+                value="yes"
+              />
+              <label htmlFor="yes">Yes</label>
+              <input
+                type="radio"
+                id="no"
+                name="contact"
+                className={classes.radio}
+                value="no"
+                defaultChecked
+              />
+              <label htmlFor="no">No</label>
+            </>
+          )}
         </fieldset>
         <input type="submit" className={classes.sendBtn} name="send" value="Send" />
       </div>
